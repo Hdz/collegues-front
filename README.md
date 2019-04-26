@@ -12,7 +12,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-[![Build Status](https://travis-ci.org/Hdz/collegues-front.svg?branch=master)](https://travis-ci.org/Hdz/collegues-front) `[Site de lancement]https://hdz.github.io/collegues-front/`
+[![Build Status](https://travis-ci.org/Hdz/collegues-front.svg?branch=master)](https://travis-ci.org/Hdz/collegues-front) [Site de lancement]https://hdz.github.io/collegues-front/
 
 ## Running unit tests
 
