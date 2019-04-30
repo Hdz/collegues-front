@@ -1,6 +1,6 @@
-import { Component, Output , OnInit, Input, EventEmitter  } from '@angular/core';
+import { Component, Output, OnInit, Input, EventEmitter, Directive, ElementRef, HostListener } from '@angular/core';
 import { Collegue } from '../models/Collegue';
-
+import { collegueMock } from '../mock/collegues.mock';
 
 
 @Component({
@@ -12,21 +12,29 @@ import { Collegue } from '../models/Collegue';
 
 export class CollegueComponent implements OnInit {
   title = 'API Collègues Front';
+  isButtonVisible = true;
 
   @Input() col: Collegue;
   @Output() messageModif = new EventEmitter<string>();
   @Output() messageCreation = new EventEmitter<string>();
+  @Output() messageValidation = new EventEmitter<string>();
+
 
   constructor() { }
- 
+
 
   modifier() {
-    this.messageModif.emit("Modification du collègue");
+    this.isButtonVisible = false;
   }
 
   creer() {
     this.messageCreation.emit("Création d'un nouveau collègue");
-}
+  }
+  valider() {
+    this.messageValidation.emit("Validation d'un nouveau collègue");
+    this.isButtonVisible = true;
+
+  }
 
   ngOnInit() {
   }

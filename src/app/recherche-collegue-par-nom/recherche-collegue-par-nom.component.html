@@ -1,0 +1,27 @@
+
+    <form>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-lg-4 col-sm-12">
+            <label for="recherheNom">Recherche par nom : </label>
+          </div>
+          <div class="col-lg-4 col-sm-12">
+            <input class="form-control" type="text" name="rechercheNom" id="rechercheNom" #nomSaisi>
+          </div>
+          <div class="col-lg-4 col-sm-12">
+            <button type="button" (click)="rechercher(nomSaisi.value)" class="btn btn-primary">Rechercher</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr>
+    <div class="container-fluid" *ngIf="resultBool === true">
+      <ul *ngFor="let matricule of matriculeList">
+        <li>{{ matricule }}</li>
+        <li>{{ nom }}</li>
+        <li>{{ prenom }}</li>
+
+
+      </ul>
+    </div>
+ 
