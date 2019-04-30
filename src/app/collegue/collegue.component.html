@@ -1,4 +1,63 @@
-<p>helloworld</p>
-<p>Nom :{{col.nom}}</p>
-<p>Prenom : {{col.prenoms}}</p>  
-<p>Matricule : {{col.matricule}} </p>
+<div class="card-header">
+    <h2>{{ col.nom }} {{ col.prenoms }}</h2>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-3">
+            <img class="img-fluid" src="{{ col.photoUrl }}" alt="Photo du collègue" />
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-lg-5 col-sm-12">
+                    <p>Matricule : </p>
+                </div>
+                <div class="col-lg-7 col-sm-12">
+                    <p>{{ col.matricule }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-sm-12">
+                    <p>Nom : </p>
+                </div>
+                <div class="col-lg-7 col-sm-12">
+                    <p>{{ col.nom }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-sm-12">
+                    <p>Prénoms : </p>
+                </div>
+                <div class="col-lg-7 col-sm-12">
+                    <p>{{ col.prenoms }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-sm-12">
+                    <p>Date de naissance : </p>
+                </div>
+                <div class="col-lg-7 col-sm-12">
+                    <p>{{ col.datedeNaissance | date : 'mediumDate' }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-sm-12">
+                    <p>Email : </p>
+                </div>
+                <div class="col-lg-7 col-sm-12">
+                    <p>{{ col.email }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-footer text-center">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <a href="#" (click)="creer()">Créer un nouveau collègue</a>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-primary float-right" (click)="modifier()">Modifier</button>
+        </div>
+    </div>
+</div>

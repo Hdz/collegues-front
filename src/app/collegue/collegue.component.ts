@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Output , OnInit, Input, EventEmitter  } from '@angular/core';
 import { Collegue } from '../models/Collegue';
+
+
 
 @Component({
   selector: 'app-collegue',
@@ -9,10 +11,22 @@ import { Collegue } from '../models/Collegue';
 
 
 export class CollegueComponent implements OnInit {
+  title = 'API Collègues Front';
 
   @Input() col: Collegue;
+  @Output() messageModif = new EventEmitter<string>();
+  @Output() messageCreation = new EventEmitter<string>();
 
   constructor() { }
+ 
+
+  modifier() {
+    this.messageModif.emit("Modification du collègue");
+  }
+
+  creer() {
+    this.messageCreation.emit("Création d'un nouveau collègue");
+}
 
   ngOnInit() {
   }
