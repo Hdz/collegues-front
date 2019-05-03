@@ -1,7 +1,7 @@
-import { Component, Output, OnInit, Input, EventEmitter, Directive, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Collegue } from '../models/Collegue';
-import { collegueMock } from '../mock/collegues.mock';
-
+import { DataService } from '../services/data.service';
+import { collectExternalReferences } from '@angular/compiler';
 
 @Component({
   selector: 'app-collegue',
@@ -15,28 +15,30 @@ export class CollegueComponent implements OnInit {
   isButtonVisible = true;
 
   @Input() col: Collegue;
-  @Output() messageModif = new EventEmitter<string>();
-  @Output() messageCreation = new EventEmitter<string>();
-  @Output() messageValidation = new EventEmitter<string>();
 
 
-  constructor() { }
+  constructor(private _srv : DataService) { }
 
 
   modifier() {
+    console.log(`Modification du collègue ${this.col.nom}`);
     this.isButtonVisible = false;
   }
 
   creer() {
-    this.messageCreation.emit("Création d'un nouveau collègue");
-  }
+    console.log(`Création d'un nouveau collègue`);
+    this.isButtonVisible = true;
+
+    }
+
   valider() {
-    this.messageValidation.emit("Validation d'un nouveau collègue");
+    console.log(`Validation d'un nouveau collègue`);
     this.isButtonVisible = true;
 
   }
 
   ngOnInit() {
+    this._srv.affichage().subscribe(col => this.col = col)
   }
 
 

@@ -1,27 +1,12 @@
-
-    <form>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-lg-4 col-sm-12">
-            <label for="recherheNom">Recherche par nom : </label>
-          </div>
-          <div class="col-lg-4 col-sm-12">
-            <input class="form-control" type="text" name="rechercheNom" id="rechercheNom" #nomSaisi>
-          </div>
-          <div class="col-lg-4 col-sm-12">
-            <button type="button" (click)="rechercher(nomSaisi.value)" class="btn btn-primary">Rechercher</button>
-          </div>
-        </div>
-      </div>
-    </form>
-    <hr>
-    <div class="container-fluid" *ngIf="resultBool === true">
-      <ul *ngFor="let matricule of matriculeList">
-        <li>{{ matricule }}</li>
-        <li>{{ nom }}</li>
-        <li>{{ prenom }}</li>
-
-
-      </ul>
+<form class="form-inline m-5">
+  <div class="form-group mx-sm-3 mb-2">
+    <label>Recherche du nom : </label>
+    <input type="text" #nomSaisie class="form-control" id="inputPassword2">
     </div>
- 
+  <button (click)="rechercherParNom(nomSaisie.value)" type="submit" class="btn btn-primary mb-2">Recherche</button>
+</form>
+
+
+<ul>
+  <button (click)="affichage(matricule)" class="btn btn-primary float-right" *ngFor="let matricule of tabResultat">{{matricule}}</button>
+</ul>

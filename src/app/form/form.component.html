@@ -1,0 +1,102 @@
+  <div class="row">
+      <div class="col-3">
+          <img class="img-fluid" src="{{ col.photoUrl }}" alt="" />
+        </div>
+  <div *ngIf="this.isButtonVisible==true">
+
+    <div class="row">
+      <div class="">
+        <p>Matricule : </p>
+      </div>
+      <div class="">
+        <p> {{ col.matricule }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="">
+        <p>Nom : </p>
+      </div>
+      <div class="">
+        <p>{{ col.nom | uppercase  }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="">
+        <p>Prénoms : </p>
+      </div>
+      <div class="">
+        <p>{{ col.prenom }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="">
+        <p>Date de naissance : </p>
+      </div>
+      <div class="">
+        <p>{{ col.dateDeNassaince | date : 'mediumDate' }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="">
+        <p>Email : </p>
+      </div>
+      <div class="">
+        <p>{{ col.email }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="this.isButtonVisible==false">
+
+    <form>
+      <div class="form-group">
+        <label for="Matricule">Matricule :</label>
+        <input class="form-control" type="text" placeholder="{{ col.matricule }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Nom">Nom :</label>
+        <input class="form-control" type="text" placeholder="{{ col.nom | uppercase  }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Prenoms">Prenoms :</label>
+        <input class="form-control" type="text" placeholder="{{ col.prenom }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Prenoms">Date de Naissance :</label>
+        <input type='text' class="form-control" placeholder="{{ col.dateDeNassaince | date : 'mediumDate' }}" />
+      </div>
+
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Adresse Mail :</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+          placeholder="{{ col.email }}"> 
+              
+        <small id="emailHelp" class="form-text text-muted">Nous ne la partagerons avec personne,
+          promis.</small>
+      </div>
+      <div class="form-group">
+        <label for="PhotoUrl">Photo</label>
+        <input type="text" class="form-control" id="PhotoUrl" placeholder="{{ col.photoUrl }}">
+      </div>
+    </form>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-sm-5">
+
+    <div *ngIf="this.isButtonVisible==true">
+      <button class="btn btn-primary float-right" *ngIf="this.isButtonVisible" (click)="modifier()">Modifier</button>
+    </div>
+    <div *ngIf="this.isButtonVisible==false">
+      <button class="btn btn-primary float-right" *ngIf="this.isButtonVisible == false" (click)=valider()>Modifier</button>
+    </div>
+    
+    <div *ngIf="this.isButtonVisible==false">
+      <button class="btn btn-primary float-right" *ngIf="this.isButtonVisible == false" (click)=creer()>Créer</button>
+    </div>
+  </div>
+</div>
