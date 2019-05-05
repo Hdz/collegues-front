@@ -17,9 +17,6 @@ export class RechercheCollegueParNomComponent implements OnInit {
   constructor(private _srv : DataService) { } //** */ DATASERVICE TP 4
 
 
-  ngOnInit() {
-  }
-
   @Output() change: EventEmitter<string> = new EventEmitter<string>()
 
 
@@ -30,6 +27,11 @@ export class RechercheCollegueParNomComponent implements OnInit {
       },
       (error:any) =>{
         this.message = "La recherche a échoué"
+        if (error.status > 399 && error.status < 500) {
+					this.message = "Aucun collègue de ce nom trouvé";
+				} else {
+					this.message = "Un problème est survenu sur le serveur, veuillez contacter un administrateur";
+}
       }
 
     );
@@ -43,6 +45,9 @@ export class RechercheCollegueParNomComponent implements OnInit {
 
   }  
 
+
+  ngOnInit() {
+  }
 
 
 }

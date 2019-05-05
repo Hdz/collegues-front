@@ -1,102 +1,116 @@
-  <div class="row">
+<div class="" *ngIf="col">
+  <div class="card-header">
+    <h2>{{ col.nom | uppercase }} {{ col.prenom }}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
       <div class="col-3">
-          <img class="img-fluid" src="{{ col.photoUrl }}" alt="" />
+        <img class="img-fluid" src="{{ col.photoUrl }}" alt="Photo du collègue" />
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="col-lg-5 col-sm-12">
+            <p>Matricule : </p>
+          </div>
+          <div class="col-lg-7 col-sm-12">
+            <p>{{ col.matricule }}</p>
+          </div>
         </div>
-  <div *ngIf="this.isButtonVisible==true">
-
-    <div class="row">
-      <div class="">
-        <p>Matricule : </p>
-      </div>
-      <div class="">
-        <p> {{ col.matricule }}</p>
-      </div>
+        <div class="row">
+          <div class="col-lg-5 col-sm-12">
+            <p>Nom : </p>
+          </div>
+          <div class="col-lg-7 col-sm-12">
+            <p>{{ col.nom | uppercase}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 col-sm-12">
+            <p>Prénom : </p>
+          </div>
+          <div class="col-lg-7 col-sm-12">
+            <p>{{ col.prenom }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 col-sm-12">
+            <p>Date de naissance : </p>
+          </div>
+          <div class="col-lg-7 col-sm-12">
+            <p>{{ col.dateDeNassaince | date:"dd/MM/yyyy" }}</p>
+          </div>
+        </div> <form *ngIf="!modifierClick; else defaultBlock" #modifForm="ngForm">
+            <div class="row form-group">
+                <div class="col-lg-5 col-sm-12">
+                    <label for="email">Email : </label>
+                </div>
+                <div class="col-lg-7 col-sm-12">
+                    <div>
+                        <input type="email" class="form-control" name="email" #email="ngModel" id="email" [(ngModel)]="col.email" required pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z.]{2,15}" />
+                        <div class="alert alert-danger" *ngIf="email.dirty && email.invalid">
+                            Le champ email est invalide (Ce champ est obligatoire et doit avoir le format mail@mail.com).
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-5 col-sm-12">
+                    <label for="photoUrl">Url de la photo : </label>
+                </div>
+                <div class="col-lg-7 col-sm-12">
+                    <input type="url" class="form-control" name="photoUrl" #photoUrl="ngModel" id="photoUrl" [(ngModel)]="col.photoUrl" required minlength="7" maxlength="255" pattern="https?://.+" appUrlValidator/>
+                    <div class="alert alert-danger" *ngIf="photoUrl.dirty && photoUrl.invalid">
+                        Le champ url de la photo est invalide (Ce champ est obligatoire et doit avoir le format http://image... et une longueur maximum de 255 caractères).
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-3">
+                    <button [disabled]="modifForm.invalid" class="btn btn-primary float-right" (click)="modifier(col.matricule)" (click)="modifierClick = !modifierClick">
+                        Valider
+                    </button>
+                </div>
+            </div>
+        </form>
+        <ng-template #defaultBlock>
+            <div class="row">
+                <div class="col-lg-5 col-sm-12">
+                    <p>Email : </p>
+                </div>
+                <div class="col-lg-7 col-sm-12">
+                    <p>{{ col.email }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <button class="btn btn-link" (click)="isButtonVisible = !isButtonVisible">Créer un nouveau collègue</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary float-right" (click)="modifierClick = !modifierClick">
+                        Modifier
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+        <br>
+        <div class="alert alert-danger text-center" *ngIf="error">
+            <p><strong>{{error}}</strong></p>
+        </div>
+        <div class="alert alert-success text-center" *ngIf="ok">
+            <p><strong>{{ok}}</strong></p>
+        </div>
     </div>
-    <div class="row">
-      <div class="">
-        <p>Nom : </p>
-      </div>
-      <div class="">
-        <p>{{ col.nom | uppercase  }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="">
-        <p>Prénoms : </p>
-      </div>
-      <div class="">
-        <p>{{ col.prenom }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="">
-        <p>Date de naissance : </p>
-      </div>
-      <div class="">
-        <p>{{ col.dateDeNassaince | date : 'mediumDate' }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="">
-        <p>Email : </p>
-      </div>
-      <div class="">
-        <p>{{ col.email }}</p>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="this.isButtonVisible==false">
-
-    <form>
-      <div class="form-group">
-        <label for="Matricule">Matricule :</label>
-        <input class="form-control" type="text" placeholder="{{ col.matricule }}">
-      </div>
-
-      <div class="form-group">
-        <label for="Nom">Nom :</label>
-        <input class="form-control" type="text" placeholder="{{ col.nom | uppercase  }}">
-      </div>
-
-      <div class="form-group">
-        <label for="Prenoms">Prenoms :</label>
-        <input class="form-control" type="text" placeholder="{{ col.prenom }}">
-      </div>
-
-      <div class="form-group">
-        <label for="Prenoms">Date de Naissance :</label>
-        <input type='text' class="form-control" placeholder="{{ col.dateDeNassaince | date : 'mediumDate' }}" />
-      </div>
-
-
-      <div class="form-group">
-        <label for="exampleInputEmail1">Adresse Mail :</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-          placeholder="{{ col.email }}"> 
-              
-        <small id="emailHelp" class="form-text text-muted">Nous ne la partagerons avec personne,
-          promis.</small>
-      </div>
-      <div class="form-group">
-        <label for="PhotoUrl">Photo</label>
-        <input type="text" class="form-control" id="PhotoUrl" placeholder="{{ col.photoUrl }}">
-      </div>
-    </form>
-  </div>
-
 </div>
-<div class="row">
-  <div class="col-sm-5">
-
-    <div *ngIf="this.isButtonVisible==true">
-      <button class="btn btn-primary float-right" *ngIf="this.isButtonVisible" (click)="modifier()">Modifier</button>
-    </div>
-    <div *ngIf="this.isButtonVisible==false">
-      <button class="btn btn-primary float-right" *ngIf="this.isButtonVisible == false" (click)=valider()>Modifier</button>
-    </div>
-    
-    <div *ngIf="this.isButtonVisible==false">
-      <button class="btn btn-primary float-right" *ngIf="this.isButtonVisible == false" (click)=creer()>Créer</button>
-    </div>
-  </div>
+</div>
+</div>
+<br>
+<div *ngIf="!isButtonVisible">
+<h2>Ajout d'un nouveau collègue : </h2>
+<hr>
+<app-ajout-collegues></app-ajout-collegues>
 </div>

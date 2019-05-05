@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { Collegue } from '../models/Collegue';
 import { DataService } from '../services/data.service';
 import { collectExternalReferences } from '@angular/compiler';
+import { ModifCollegue } from '../models/ModifCollegue';
 
 @Component({
   selector: 'app-collegue',
@@ -15,13 +16,14 @@ export class CollegueComponent implements OnInit {
   isButtonVisible = true;
 
   @Input() col: Collegue;
-
+	collegueModifie: ModifCollegue = new ModifCollegue();
 
   constructor(private _srv : DataService) { }
 
 
   modifier() {
     console.log(`Modification du collègue ${this.col.nom}`);
+    
     this.isButtonVisible = false;
   }
 

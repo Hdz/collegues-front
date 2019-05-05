@@ -4,7 +4,8 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-
+import { ModifCollegue } from '../models/ModifCollegue';
+import { NvCollegue } from '../models/NvCollegue';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { tap } from 'rxjs/operators';
 })
 export class DataService {
 
-  private subject = new Subject<Collegue>(); 
+  subject: Subject<Collegue> = new Subject();
   tabResultat = []
 
   constructor(private _http: HttpClient) { }
@@ -28,11 +29,19 @@ export class DataService {
 
   publish(matricule: string): Observable<Collegue> {
     return this._http.get<Collegue>(`${environment.backendUrl}collegues/${matricule}`)
-    .pipe(tap(col => this.subject.next(col)));
+      .pipe(tap(col => this.subject.next(col)));
   }
 
-  modifierNom(collegue:Collegue){
-    return this._http.patch<Collegue>(`${environment.backendUrl}/${collegue.matricule.toLowerCase ()}`, collegue);
+  modifierCollegue(matricule: string, collegueModifie: ModifCollegue): Observable<Collegue> {
+
+    return this._http.patch<Collegue>(`${environment.backendUrl}/${matricule}`, collegueModifie);
+
+  }
+
+  creerCollegue(nvCollegue: NvCollegue): Observable<Collegue> {
+
+    return this._http.post<Collegue>(`${environment.backendUrl}`, nvCollegue);
+
   }
 
 }

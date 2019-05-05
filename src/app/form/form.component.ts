@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Collegue } from '../models/Collegue';
 import { DataService } from '../services/data.service';
+import { ModifCollegue } from '../models/ModifCollegue';
 
 
 @Component({
@@ -10,39 +11,46 @@ import { DataService } from '../services/data.service';
 })
 export class FormComponent implements OnInit {
 
-  isButtonVisible = true;
-
-
+  modifierClick: boolean = true;
+  isButtonVisible: boolean = true;
   @Input() col: Collegue;
   colAModifier:Collegue;
+  collegueModifie: ModifCollegue = new ModifCollegue();
+  error: any;
+  ok: string;
 
   constructor(private _srv : DataService) {}
 
+  
+    modifier(matricule: string) {
+
+      this.collegueModifie.email = this.collegueModifie.email;
+      this.collegueModifie.photoUrl = this.collegueModifie.photoUrl;
+  
+      this._srv.modifierCollegue(matricule, this.collegueModifie).subscribe(ok => {
+        this.error = undefined;
+        this.ok = `Le collègue ${this.col.nom} ${this.col.prenom} a bien été modifié`;
+        setInterval(
+          () => {
+            this.ok = undefined;
+          }, 7000
+        );
+      }, ko => {
+        this.ok = undefined;
+        this.error = ko.error;
+        setInterval(
+          () => {
+            this.error = undefined;
+          }, 7000
+        );
+  });
+      this.isButtonVisible = false;
+    }
+  
+  
   ngOnInit() {
     this._srv.affichage().subscribe(col => this.col = col)
   }
 
-  modifier() {
-    console.log(`Modification du collègue ${this.col.nom}`);
-    this.isButtonVisible = false;
-  }
-
-  creer() {
-    console.log(`Création d'un nouveau collègue`);
-    this.isButtonVisible = true;
-
-    }
-
-  valider() {
-    console.log(`Validation d'un nouveau collègue`);
-    this.isButtonVisible = true;
-
-  }
-
-  retablirEmail(retablir:boolean) {
-    if (retablir) {
-      this.colAModifier.email = this.col.email;
-    }
-}
 
 }

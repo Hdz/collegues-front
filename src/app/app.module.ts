@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { CollegueComponent } from './collegue/collegue.component';
 import { RechercheCollegueParNomComponent } from './recherche-collegue-par-nom/recherche-collegue-par-nom.component';
 import { FormComponent } from './form/form.component';
+import { AjoutColleguesComponent } from './ajout-collegues/ajout-collegues.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormComponent } from './form/form.component';
     CollegueComponent,
     RechercheCollegueParNomComponent,
     FormComponent,
+    AjoutColleguesComponent,
   ],
   imports: [
     BrowserModule,

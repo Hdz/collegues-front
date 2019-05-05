@@ -6,12 +6,12 @@ import { DataService } from './services/data.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styles: ['./app.component.css']
+  styles: ['app.component.css']
 })
 
 export class AppComponent implements OnInit{
 
-  title = 'API Collègues Front';
+  title = 'Application Collègues';
   unObjetCollegueFourni;
 
   afficherMessage(message:string) {
