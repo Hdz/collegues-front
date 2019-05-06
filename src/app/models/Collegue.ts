@@ -3,7 +3,7 @@ export class Collegue {
        public matricule: string,
        public nom: string, 
        public prenom: string, 
-       public dateDeNassaince: Date, 
+       public dateDeNaissance: Date, 
        public photoUrl: string, 
        public email: string
        ){}

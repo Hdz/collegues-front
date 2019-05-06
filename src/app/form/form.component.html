@@ -37,7 +37,7 @@
             <p>Date de naissance : </p>
           </div>
           <div class="col-lg-7 col-sm-12">
-            <p>{{ col.dateDeNassaince | date:"dd/MM/yyyy" }}</p>
+            <p>{{ col.dateDeNaissance | date:"dd/MM/yyyy" }}</p>
           </div>
         </div> <form *ngIf="!modifierClick; else defaultBlock" #modifForm="ngForm">
             <div class="row form-group">

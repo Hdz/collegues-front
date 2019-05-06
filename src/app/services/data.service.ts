@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { ModifCollegue } from '../models/ModifCollegue';
 import { NvCollegue } from '../models/NvCollegue';
+import { ColleguePhoto } from '../models/ColleguePhoto';
 
 
 @Injectable({
@@ -43,5 +44,10 @@ export class DataService {
     return this._http.post<Collegue>(`${environment.backendUrl}collegues/`, nvCollegue);
 
   }
+
+    recupPhoto(): Observable<ColleguePhoto> {
+      return this._http.get<ColleguePhoto>(`${environment.backendUrl}photos/`)
+
+    }
 
 }

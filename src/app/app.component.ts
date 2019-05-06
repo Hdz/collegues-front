@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { collegueMock } from './mock/collegues.mock';
-import { Collegue } from './models/Collegue';
 import { DataService } from './services/data.service';
 
 @Component({
@@ -11,7 +9,6 @@ import { DataService } from './services/data.service';
 
 export class AppComponent implements OnInit{
 
-  title = 'Application Collègues';
   unObjetCollegueFourni;
 
   afficherMessage(message:string) {
