@@ -34,13 +34,13 @@ export class DataService {
 
   modifierCollegue(matricule: string, collegueModifie: ModifCollegue): Observable<Collegue> {
 
-    return this._http.patch<Collegue>(`${environment.backendUrl}/${matricule}`, collegueModifie);
+    return this._http.patch<Collegue>(`${environment.backendUrl}collegues/${matricule}`, collegueModifie);
 
   }
 
   creerCollegue(nvCollegue: NvCollegue): Observable<Collegue> {
 
-    return this._http.post<Collegue>(`${environment.backendUrl}`, nvCollegue);
+    return this._http.post<Collegue>(`${environment.backendUrl}collegues/`, nvCollegue);
 
   }
 

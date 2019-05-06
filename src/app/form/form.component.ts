@@ -24,8 +24,8 @@ export class FormComponent implements OnInit {
   
     modifier(matricule: string) {
 
-      this.collegueModifie.email = this.collegueModifie.email;
-      this.collegueModifie.photoUrl = this.collegueModifie.photoUrl;
+      this.collegueModifie.email = this.col.email;
+      this.collegueModifie.photoUrl = this.col.photoUrl;
   
       this._srv.modifierCollegue(matricule, this.collegueModifie).subscribe(ok => {
         this.error = undefined;

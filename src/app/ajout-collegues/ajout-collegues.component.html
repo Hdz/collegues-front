@@ -24,12 +24,12 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-5 col-sm-12">
-                            <label for="prenoms">Prénom : </label>
+                            <label for="prenom">Prénom : </label>
                         </div>
                         <div class="col-lg-7 col-sm-12">
                             <div>
-                                <input type="text" class="form-control" name="prenoms" #prenoms="ngModel" id="prenoms" [(ngModel)]="newCollegue.prenoms" required minlength="3" />
-                                <div class="alert alert-danger" *ngIf="(prenoms.dirty || prenoms.touched) && prenoms.invalid">
+                                <input type="text" class="form-control" name="prenom" #prenom="ngModel" id="prenom" [(ngModel)]="newCollegue.prenom" required minlength="3" />
+                                <div class="alert alert-danger" *ngIf="(prenom.dirty || prenom.touched) && prenom.invalid">
                                     Ce champ est obligatoire et doit contenir au moins 3 caractères.
                                 </div>
                             </div>
