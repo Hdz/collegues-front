@@ -46,7 +46,7 @@ export class DataService {
   }
 
     recupPhoto(): Observable<ColleguePhoto> {
-      return this._http.get<ColleguePhoto>(`${environment.backendUrl}photos/`)
+      return this._http.get<ColleguePhoto>(`${environment.backendUrl}collegues/photos/`)
 
     }
 
