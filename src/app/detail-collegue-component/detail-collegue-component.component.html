@@ -1,0 +1,40 @@
+<div class="row cartel">
+    <div class="col-12 justify-align-center align-self-center entete-cartel">
+      <img src="{{collegue.photoUrl}}" class="img-fluid img-thumbnail justify-align-center mx-auto d-block" />
+
+    <div class="col-12 mx-auto d-block align-small text-center">
+      <label>Matricule :</label> {{collegue.matricule}} <br />
+      <label>Nom :</label> {{collegue.nom | uppercase}}<br />
+      <label>Prenoms :</label> {{collegue.prenoms | lowercase}} <br />
+      <label>Date De Naissance :</label> {{collegue.dateDeNaissance | date:'dd/MM/yyyy'}} <br />
+      <label>Email :</label> {{collegue.email}} <br />
+      </div>
+  </div>
+  </div>
+<br>
+<div class="container">
+  <form class="form-group" #form="ngForm">
+      <div class="form-group">
+          <textarea class="form-control mb-4" name="comment" id="comment" rows="5" minlength="5" #comment="ngModel" [(ngModel)]="nvComment.contenu" required (keydown.enter)="saveNewComment()" placeholder="Veuillez entrer un commentaire sur votre collègue."></textarea>
+          <div class="alert alert-danger" *ngIf="(comment.dirty || comment.touched) && comment.invalid">
+              Le champ doit contenir un commentaire d'au moins 5 caractères
+          </div>
+          <div class="alert alert-danger text-center" *ngIf="message">
+              <p><strong>{{message}}</strong></p>
+          </div>
+          <div class="alert alert-success text-center" *ngIf="messageOk">
+              <p><strong>{{messageOk}}</strong></p>
+          </div>
+          <!-- <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Valider</button> -->
+      </div>
+  </form>
+</div>
+<br>
+<div class="container">
+  <h2>Commentaires précédents : </h2>
+  <hr>
+  <div *ngFor="let commentaire of commentaires">
+    <app-commentaire-component [commentaire]="commentaire" [matricule]="collegue.matricule" (event)="updateListAfterDelete($event)"></app-commentaire-component>
+</div>
+  <hr>
+</div>

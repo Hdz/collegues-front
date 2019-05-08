@@ -10,7 +10,8 @@ import { ColleguePhoto } from '../models/ColleguePhoto';
 export class GallerieComponentComponent implements OnInit {
 
   ColleguePhoto = new ColleguePhoto("","");
-  tabcolleguesPhoto;
+  tabcolleguesPhoto ;
+  
   constructor(private _srv : DataService) { }
 
 

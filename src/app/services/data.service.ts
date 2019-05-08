@@ -7,6 +7,8 @@ import { tap } from 'rxjs/operators';
 import { ModifCollegue } from '../models/ModifCollegue';
 import { NvCollegue } from '../models/NvCollegue';
 import { ColleguePhoto } from '../models/ColleguePhoto';
+import { NvCommentaire } from '../models/NvCommentaire';
+import { Commentaire } from '../models/Commentaire';
 
 
 @Injectable({
@@ -45,9 +47,28 @@ export class DataService {
 
   }
 
-    recupPhoto(): Observable<ColleguePhoto> {
-      return this._http.get<ColleguePhoto>(`${environment.backendUrl}collegues/photos/`)
+  recupPhoto(): Observable<ColleguePhoto> {
+    return this._http.get<ColleguePhoto>(`${environment.backendUrl}collegues/photos/`)
 
-    }
+  }
+
+  recupererCommentaires(matricule: string): Observable<Commentaire[]> {
+
+    return this._http.get<Commentaire[]>(`${environment.backendUrl}/${matricule}/commentaires`);
+
+  }
+
+  ajouterCommentaire(commentaire: NvCommentaire, matricule: string): Observable<Commentaire> {
+
+    return this._http.post<Commentaire>(`${environment.backendUrl}/${matricule}/commentaires`, commentaire);
+
+  }
+
+  supprimerCommentaire(commentaire: Commentaire, matricule: string): Observable<String> {
+
+    return this._http.delete<string>(`${environment.backendUrl}/${matricule}/commentaires/${commentaire.id}`);
+
+  }
 
 }
+

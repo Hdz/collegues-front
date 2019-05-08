@@ -18,6 +18,8 @@ import { RouterModule } from '@angular/router';
 import { GallerieComponentComponent } from './gallerie-component/gallerie-component.component';
 import { AproposComponentComponent } from './apropos-component/apropos-component.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
+import { DetailCollegueComponentComponent } from './detail-collegue-component/detail-collegue-component.component';
+import { CommentaireComponentComponent } from './commentaire-component/commentaire-component.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { HomeComponentComponent } from './home-component/home-component.componen
     GallerieComponentComponent,
     AproposComponentComponent,
     HomeComponentComponent,
+    DetailCollegueComponentComponent,
+    CommentaireComponentComponent,
   ],
   imports: [
     BrowserModule,

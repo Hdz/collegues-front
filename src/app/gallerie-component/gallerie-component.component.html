@@ -1,11 +1,9 @@
-
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <div class="container-fluid">
 	<div class="row">
       <div *ngFor="let colPhoto of tabcolleguesPhoto">
             <div class="col col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="" >
+                <a routerLink="/galerie/{{ colPhoto.matricule }}">
                     <img class="img-thumbnail"
                          src="{{colPhoto.photoUrl}}"
                          alt="Affichage PHOTO">
